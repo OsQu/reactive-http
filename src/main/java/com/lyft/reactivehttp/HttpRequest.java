@@ -19,6 +19,9 @@
 package com.lyft.reactivehttp;
 
 import com.google.gson.Gson;
+
+import org.apache.http.HttpEntity;
+
 import rx.Observable;
 
 import java.io.File;
@@ -111,6 +114,11 @@ public class HttpRequest {
 
     public HttpRequest file(String contentType, File file) {
         body = new FileTypedOutput(contentType, file);
+        return this;
+    }
+
+    public HttpRequest entity(HttpEntity entity) {
+        body = new HttpEntityTypedOutput(entity);
         return this;
     }
 
